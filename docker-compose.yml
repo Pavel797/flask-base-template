@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    restart: on-failure
+    logging:
+      driver: journald
+    volumes:
+      - ./:/app:ro
+    environment:
+      REDIS_URL:
+      TELEGRAM_BOT_TOKEN:
+      PROXY_HOST:
+      NAVIGATOR_API_HOST:

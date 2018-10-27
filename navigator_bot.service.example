@@ -1,0 +1,16 @@
+[Unit]
+Description=Flask Template Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+WorkingDirectory={{path_to_project}}
+ExecStart=/usr/local/bin/docker-compose -f {{path_to_project}}/docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose -f {{path_to_project}}/docker-compose.yml down
+TimeoutStartSec=0
+Restart=on-failure
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target
